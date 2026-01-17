@@ -1,0 +1,6 @@
+elevenlabs
+pysrt
+pydub
+openai
+python-dotenv
+

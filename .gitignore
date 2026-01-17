@@ -1,0 +1,6 @@
+.venv*/
+pycache*/
+*.mp4
+*.srt
+*.mp3
+.env
