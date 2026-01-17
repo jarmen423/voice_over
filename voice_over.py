@@ -212,7 +212,7 @@ def main():
                 voice_id=voice_id,
                 model_id="eleven_v3",
                 voice_settings=VoiceSettings(
-                    stability=0.4,       # Lower = More emotion
+                    stability=0.5,       # Lower = More emotion
                     similarity_boost=0.8, 
                     style=0.6,           # Higher = More exaggeration
                     use_speaker_boost=True
