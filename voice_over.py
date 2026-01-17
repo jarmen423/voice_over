@@ -212,9 +212,9 @@ def main():
                 voice_id=voice_id,
                 model_id="eleven_v3",
                 voice_settings=VoiceSettings(
-                    stability=0.5,       # Lower = More emotion
+                    stability=0.0,       # 0.0 = Maximum expressiveness/natural variation
                     similarity_boost=0.8, 
-                    style=0.6,           # Higher = More exaggeration
+                    style=0.0,           # 0.0 = Natural delivery (eleven_v3)
                     use_speaker_boost=True
                 )
             )
@@ -235,12 +235,23 @@ def main():
     print(f"Done! Saved to {output_path}")
     messagebox.showinfo("Complete", f"Audio saved to:\n{output_path}")
     
-    # G. OPTIONAL: MERGE WITH VIDEO
+    # Track the final audio path (may change if mixed)
+    final_audio_path = output_path
+    
+    # G. OPTIONAL: ADD BACKGROUND MUSIC
     root = tk.Tk()
     root.withdraw()
+    if messagebox.askyesno("Add Background Music?", "Do you want to add background music to this audio?"):
+        from mixer import mix_audio
+        mixed_path = mix_audio(output_path)
+        if mixed_path:
+            final_audio_path = mixed_path
+    
+    # H. OPTIONAL: MERGE WITH VIDEO
     if messagebox.askyesno("Merge with Video?", "Do you want to merge this audio with the original video?"):
         from merge_video import merge_with_video
-        merge_with_video(input_srt, output_path)
+        merge_with_video(input_srt, final_audio_path)
 
 if __name__ == "__main__":
     main()
+
