@@ -234,6 +234,13 @@ def main():
     
     print(f"Done! Saved to {output_path}")
     messagebox.showinfo("Complete", f"Audio saved to:\n{output_path}")
+    
+    # G. OPTIONAL: MERGE WITH VIDEO
+    root = tk.Tk()
+    root.withdraw()
+    if messagebox.askyesno("Merge with Video?", "Do you want to merge this audio with the original video?"):
+        from merge_video import merge_with_video
+        merge_with_video(input_srt, output_path)
 
 if __name__ == "__main__":
     main()
